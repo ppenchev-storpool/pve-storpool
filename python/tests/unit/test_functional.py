@@ -18,20 +18,26 @@ if typing.TYPE_CHECKING:
 
 
 def test_run_help_noop() -> None:
-    """Make sure that `sp-watchdog-mux run --help` and `sp-pve-utils run --noop` work."""
-    output_help: Final = subprocess.check_output(
+    """Make sure that the `--help` and `--noop` options work."""
+    watchdog_help: Final = subprocess.check_output(
         [sys.executable, "-m", "sp_pve_utils.watchdog_mux", "run", "--help"],  # noqa: S603
         encoding="UTF-8",
     )
-    assert "--noop" in output_help
-    assert "Would listen on " not in output_help
+    assert "--noop" in watchdog_help
+    assert "Would listen on " not in watchdog_help
 
-    output_noop: Final = subprocess.check_output(
+    watchdog_noop: Final = subprocess.check_output(
         [sys.executable, "-m", "sp_pve_utils.watchdog_mux", "run", "--noop"],  # noqa: S603
         encoding="UTF-8",
     )
-    assert "--noop" not in output_noop
-    assert "Would listen on " in output_noop
+    assert "--noop" not in watchdog_noop
+    assert "Would listen on " in watchdog_noop
+
+    status_help: Final = subprocess.check_output(
+        [sys.executable, "-m", "sp_pve_utils.vm_status", "show", "--help"],  # noqa: S603
+        encoding="UTF-8",
+    )
+    assert "VMID" in status_help
 
 
 def test_wd_connect_disconnect() -> None:  # noqa: PLR0915

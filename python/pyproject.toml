@@ -43,6 +43,7 @@ email = "support@storpool.com"
 
 [project.scripts]
 "sp-watchdog-mux" = "sp_pve_utils.watchdog_mux:main"
+"sp-vm-status" = "sp_pve_utils.vm_status:main"
 
 [project.urls]
 Homepage = "https://storpool.com/"
